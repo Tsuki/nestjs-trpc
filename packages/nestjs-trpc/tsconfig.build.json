@@ -3,8 +3,10 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./lib",
+    "module": "esnext",
     "incremental": false,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "moduleResolution": "node"
   },
   "include": ["lib/**/*.ts"],
   "exclude": ["node_modules", "dist", "lib/**/__tests__/*", "*.spec.ts"]
