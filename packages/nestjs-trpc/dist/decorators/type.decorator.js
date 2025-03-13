@@ -1,0 +1,23 @@
+import { ProcedureParamDecoratorType, } from '../interfaces/factory.interface';
+import { PROCEDURE_PARAM_METADATA_KEY } from '../trpc.constants';
+/**
+ * Type procedure parameter decorator. Extracts the `type` parameter out of the procedure `opts`.
+ *
+ * @see [Parameter Decorators](https://www.nestjs-trpc.io/docs/routers#parameter-decorators)
+ *
+ * @publicApi
+ */
+export function Type() {
+    return (target, propertyKey, parameterIndex) => {
+        if (propertyKey != null) {
+            const existingParams = Reflect.getMetadata(PROCEDURE_PARAM_METADATA_KEY, target, propertyKey) || [];
+            const procedureParamMetadata = {
+                type: ProcedureParamDecoratorType.Type,
+                index: parameterIndex,
+            };
+            existingParams.push(procedureParamMetadata);
+            Reflect.defineMetadata(PROCEDURE_PARAM_METADATA_KEY, existingParams, target, propertyKey);
+        }
+    };
+}
+//# sourceMappingURL=type.decorator.js.map
